@@ -2,6 +2,71 @@ import { useState } from 'react';
 import reactLogo from './assets/react.svg';
 import viteLogo from '/vite.svg';
 import './App.css';
+import HourView from './HourView';
+import { Slot } from './Slot';
+
+const slots: Slot[] = [
+  {
+    time: '08:00',
+    cols: [
+      { subject: 'TC', teacher: 'JD' },
+      { subject: 'TC', teacher: 'JD' },
+      null,
+      { subject: 'PF', teacher: 'OD' },
+      { subject: 'PF', teacher: 'OD' },
+      null,
+      null,
+    ],
+  },
+  {
+    time: '09:45',
+    cols: [
+      { subject: 'TC', teacher: 'JD' },
+      null,
+      null,
+      { subject: 'PF', teacher: 'AT' },
+      { subject: 'AB', teacher: 'LK' },
+      null,
+      null,
+    ],
+  },
+  {
+    time: '11:30',
+    cols: [
+      { subject: 'AM1', teacher: 'WE' },
+      { subject: 'AM1', teacher: 'AH' },
+      { subject: 'AM1', teacher: 'PO' },
+      { subject: 'PF', teacher: 'AT' },
+      { subject: 'AB', teacher: 'LK' },
+      null,
+      null,
+    ],
+  },
+  {
+    time: '13:15',
+    cols: [
+      { subject: 'AM1', teacher: 'WE' },
+      { subject: 'AM1', teacher: 'AH' },
+      { subject: 'AM1', teacher: 'PO' },
+      null,
+      null,
+      null,
+      null,
+    ],
+  },
+  {
+    time: '15:00',
+    cols: [
+      { subject: 'TM', teacher: 'BK' },
+      { subject: 'TM', teacher: 'BK' },
+      null,
+      null,
+      null,
+      null,
+      null,
+    ],
+  },
+];
 
 function App() {
   const [count, setCount] = useState(0);
@@ -32,6 +97,7 @@ function App() {
             </p>
           </div>
           <p>Click on the Vite and React logos to learn more</p>
+          <HourView slots={slots} />
         </div>
         <div></div>
       </div>

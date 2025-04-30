@@ -3,7 +3,7 @@ import { Slot } from './Slot';
 
 const days = ['Pon', 'Wt', 'Śr', 'Czw', 'Pt', 'Sob', 'Nie'];
 
-function HourView({ slots }: HourViewProps) {
+function WeekRoomView({ slots }: HourViewProps) {
   function HourSlotRow({ slot }: HourSlotRow) {
     const { time, cols } = slot;
     return (
@@ -21,6 +21,13 @@ function HourView({ slots }: HourViewProps) {
   return (
     <>
       <div className='border border-base-content/5 bg-base-100'>
+        <div className='flex justify-center'>
+          <div className='join'>
+            <button className='join-item btn btn-outline'>« Poprzedni</button>
+            <button className='join-item btn btn-outline'>28.04 - 04.05</button>
+            <button className='join-item btn btn-outline'>Następny »</button>
+          </div>
+        </div>
         <table className='table table-zebra'>
           <thead>
             <tr>
@@ -49,4 +56,4 @@ interface HourSlotRow {
   slot: Slot;
 }
 
-export default HourView;
+export default WeekRoomView;

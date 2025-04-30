@@ -2,7 +2,7 @@ import { useState } from 'react';
 import reactLogo from './assets/react.svg';
 import viteLogo from '/vite.svg';
 import './App.css';
-import HourView from './HourView';
+import WeekRoomView from './WeekRoomView';
 import { Slot } from './Slot';
 
 const slots: Slot[] = [
@@ -97,7 +97,7 @@ function App() {
             </p>
           </div>
           <p>Click on the Vite and React logos to learn more</p>
-          <HourView slots={slots} />
+          <WeekRoomView slots={slots} />
         </div>
         <div></div>
       </div>

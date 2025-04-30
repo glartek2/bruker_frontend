@@ -1,17 +1,17 @@
 import HourSlot from './HourSlot';
-import { Slot } from './Slot';
+import { SlotsRow } from '../../model/Slot';
 
 const days = ['Pon', 'Wt', 'Śr', 'Czw', 'Pt', 'Sob', 'Nie'];
 
-function WeekRoomView({ slots }: HourViewProps) {
-  function HourSlotRow({ slot }: HourSlotRow) {
-    const { time, cols } = slot;
+function FullWeekRoomView({ slots }: FullWeekRoomViewProps) {
+  function HourSlotRow({ slotsRow }: HourSlotRowProps) {
+    const { time, cols } = slotsRow;
     return (
       <tr>
         <th>{time}</th>
-        {cols.map(col => (
+        {cols.map(slot => (
           <td>
-            <HourSlot booking={col} />
+            <HourSlot booking={slot} />
           </td>
         ))}
       </tr>
@@ -23,9 +23,9 @@ function WeekRoomView({ slots }: HourViewProps) {
       <div className='border border-base-content/5 bg-base-100'>
         <div className='flex justify-center'>
           <div className='join'>
-            <button className='join-item btn btn-outline'>« Poprzedni</button>
-            <button className='join-item btn btn-outline'>28.04 - 04.05</button>
-            <button className='join-item btn btn-outline'>Następny »</button>
+            <button className='join-item btn'>« Poprzedni</button>
+            <button className='join-item btn'>28.04 - 04.05</button>
+            <button className='join-item btn'>Następny »</button>
           </div>
         </div>
         <table className='table table-zebra'>
@@ -38,8 +38,8 @@ function WeekRoomView({ slots }: HourViewProps) {
             </tr>
           </thead>
           <tbody>
-            {slots.map(slot => (
-              <HourSlotRow slot={slot} />
+            {slots.map(slotsRow => (
+              <HourSlotRow slotsRow={slotsRow} />
             ))}
           </tbody>
         </table>
@@ -48,12 +48,12 @@ function WeekRoomView({ slots }: HourViewProps) {
   );
 }
 
-interface HourViewProps {
-  slots: Slot[];
+interface FullWeekRoomViewProps {
+  slots: SlotsRow[];
 }
 
-interface HourSlotRow {
-  slot: Slot;
+interface HourSlotRowProps {
+  slotsRow: SlotsRow;
 }
 
-export default WeekRoomView;
+export default FullWeekRoomView;

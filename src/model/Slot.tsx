@@ -5,9 +5,14 @@ interface Booking {
 
 type MaybeBooking = Booking | null;
 
-interface Slot {
+interface SlotsRow {
   time: string;
   cols: MaybeBooking[];
 }
 
-export type { MaybeBooking, Slot };
+interface SlotsCol {
+  day: string;
+  rows: MaybeBooking[];
+}
+
+export type { MaybeBooking, SlotsRow, SlotsCol };

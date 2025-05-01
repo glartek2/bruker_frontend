@@ -1,7 +1,7 @@
 import HourCard from './HourCard';
 import { DaySlots } from '../../model/Slot';
 
-function WeekRoomView({ daysSlots }: WeekRoomViewProps) {
+function WeekRoomSlots({ daysSlots }: WeekRoomViewProps) {
   function DaySlotCol({ daySlots }: DaySlotColProps) {
     const { day, rows } = daySlots;
     return (
@@ -43,4 +43,4 @@ interface DaySlotColProps {
   daySlots: DaySlots;
 }
 
-export default WeekRoomView;
+export default WeekRoomSlots;

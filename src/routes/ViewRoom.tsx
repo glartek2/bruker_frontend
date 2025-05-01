@@ -1,5 +1,11 @@
 import { DaySlots } from '../model/Slot';
-import WeekRoomView from '../components/room/WeekRoomView';
+import { Room } from '../model/Room';
+import WeekRoomSlots from '../components/room/WeekRoomSlots';
+
+const room: Room = {
+  buildingName: 'D-17',
+  roomName: '3.27a',
+};
 
 const slots: DaySlots[] = [
   {
@@ -95,6 +101,11 @@ function ViewRoom() {
         <div></div>
         <div className='flex flex-row justify-center'>
           <div>
+            <div>
+              <h1>
+                {room.roomName} w {room.buildingName}
+              </h1>
+            </div>
             <div className='flex justify-center'>
               <div className='join'>
                 <button className='join-item btn'>« Poprzedni</button>
@@ -102,7 +113,7 @@ function ViewRoom() {
                 <button className='join-item btn'>Następny »</button>
               </div>
             </div>
-            <WeekRoomView daysSlots={slots} />
+            <WeekRoomSlots daysSlots={slots} />
           </div>
         </div>
         <div></div>

@@ -1,8 +1,8 @@
 import { PropsWithChildren } from 'react';
 import { useLocation, useNavigate } from 'react-router';
-import HomeIcon from '../icons/HomeIcon';
-import RoomIcon from '../icons/RoomIcon';
-import SearchIcon from '../icons/SearchIcon';
+import HomeFilledIcon from '@mui/icons-material/HomeFilled';
+import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
+import SearchIcon from '@mui/icons-material/Search';
 
 function Dock() {
   const location = useLocation();
@@ -29,15 +29,15 @@ function Dock() {
 
   return (
     <div className='dock visible sm:invisible'>
-      <DockButton title='Home' to='/'>
-        <HomeIcon />
+      <DockButton title='Profil' to='/'>
+        <HomeFilledIcon />
       </DockButton>
 
-      <DockButton title='Room' to='/room'>
-        <RoomIcon />
+      <DockButton title='Rezerwuj' to='/room'>
+        <CalendarMonthIcon />
       </DockButton>
 
-      <DockButton title='Search' to='/search'>
+      <DockButton title='Szukaj' to='/search'>
         <SearchIcon />
       </DockButton>
     </div>

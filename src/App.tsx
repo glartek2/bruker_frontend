@@ -13,18 +13,20 @@ import NotFound from './routes/NotFound';
 
 function App() {
   return (
-    <BrowserRouter>
-      <NavBar />
-      <Routes>
-        <Route path='/' element={<Home />} />
-        <Route path='/profile' element={<Profile />} />
-        <Route path='/search' element={<SearchRooms />} />
-        <Route path='/room' element={<ViewRoom />} />
-        <Route path='*' element={<NotFound />} />
-      </Routes>
-      <Dock />
-      <Footer />
-    </BrowserRouter>
+    <>
+      <BrowserRouter>
+        <NavBar />
+        <Routes>
+          <Route path='/' element={<Home />} />
+          <Route path='/profile' element={<Profile />} />
+          <Route path='/search' element={<SearchRooms />} />
+          <Route path='/room' element={<ViewRoom />} />
+          <Route path='*' element={<NotFound />} />
+        </Routes>
+        <Dock />
+        <Footer />
+      </BrowserRouter>
+    </>
   );
 }
 

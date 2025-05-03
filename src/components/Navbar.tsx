@@ -1,7 +1,7 @@
 import { NavLink } from 'react-router';
-import SearchBar from './SearchBar';
 import SignIn from './SignIn';
 import { LogoXL } from '../icons/Logo';
+import SearchIcon from '@mui/icons-material/Search';
 
 function NavBar() {
   return (
@@ -18,9 +18,12 @@ function NavBar() {
         </div>
       </div>
 
-      <div className='navbar-end'>
+      <div className='navbar-end space-x-2'>
         <div tabIndex={0} className='max-md:hidden'>
-          <SearchBar />
+          <NavLink className='btn btn-ghost' to='/search'>
+            <SearchIcon />
+            Szukaj
+          </NavLink>
         </div>
         <SignIn />
       </div>

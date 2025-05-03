@@ -1,9 +1,22 @@
+import LoginIcon from '@mui/icons-material/Login';
+import AccountBoxIcon from '@mui/icons-material/AccountBox';
+
 function SignIn() {
-  const isIn = true;
+  const isIn = false;
   if (!isIn) {
-    return <button className='btn'>Sign in</button>;
+    return (
+      <button className='btn'>
+        <LoginIcon />
+        Zaloguj
+      </button>
+    );
   } else {
-    return <button className='btn btn-soft btn-accent'>Profile</button>;
+    return (
+      <button className='btn btn-soft btn-accent'>
+        <AccountBoxIcon />
+        Profil
+      </button>
+    );
   }
 }
 

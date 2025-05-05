@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router';
-import SignIn from './SignIn';
+import SignInButton from './SignInButton';
 import { LogoXL } from '../icons/Logo';
 import SearchIcon from '@mui/icons-material/Search';
 
@@ -25,7 +25,7 @@ function NavBar() {
             Szukaj
           </NavLink>
         </div>
-        <SignIn />
+        <SignInButton />
       </div>
     </div>
   );

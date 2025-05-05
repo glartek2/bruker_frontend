@@ -1,7 +1,7 @@
 import LoginIcon from '@mui/icons-material/Login';
 import AccountBoxIcon from '@mui/icons-material/AccountBox';
 
-function SignIn() {
+function SignInButton() {
   const isIn = false;
   if (!isIn) {
     return (
@@ -20,4 +20,4 @@ function SignIn() {
   }
 }
 
-export default SignIn;
+export default SignInButton;

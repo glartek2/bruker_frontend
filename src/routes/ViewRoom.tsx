@@ -1,6 +1,7 @@
 import { DaySlots } from '../model/Slot';
 import { Room } from '../model/Room';
 import WeekRoomSlots from '../components/room/WeekRoomSlots';
+import RouteContainer from '../components/RouteContainer';
 
 const room: Room = {
   buildingName: 'D-17',
@@ -96,7 +97,7 @@ const slots: DaySlots[] = [
 
 function ViewRoom() {
   return (
-    <>
+    <RouteContainer>
       <div className='grid grid-cols-[1fr_4fr_1fr]'>
         <div></div>
         <div className='flex flex-row justify-center'>
@@ -118,7 +119,7 @@ function ViewRoom() {
         </div>
         <div></div>
       </div>
-    </>
+    </RouteContainer>
   );
 }
 

@@ -11,18 +11,22 @@ import SearchRooms from './routes/SearchRooms';
 import ViewRoom from './routes/ViewRoom';
 import NotFound from './routes/NotFound';
 
+import { AnimatePresence } from 'framer-motion';
+
 function App() {
   return (
     <>
       <BrowserRouter>
         <NavBar />
-        <Routes>
-          <Route path='/' element={<Home />} />
-          <Route path='/profile' element={<Profile />} />
-          <Route path='/search' element={<SearchRooms />} />
-          <Route path='/room' element={<ViewRoom />} />
-          <Route path='*' element={<NotFound />} />
-        </Routes>
+        <AnimatePresence>
+          <Routes>
+            <Route path='/' element={<Home />} />
+            <Route path='/profile' element={<Profile />} />
+            <Route path='/search' element={<SearchRooms />} />
+            <Route path='/room' element={<ViewRoom />} />
+            <Route path='*' element={<NotFound />} />
+          </Routes>
+        </AnimatePresence>
         <Dock />
         <Footer />
       </BrowserRouter>

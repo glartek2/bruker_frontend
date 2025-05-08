@@ -1,11 +1,13 @@
-import { StrictMode } from 'react';
-import { createRoot } from 'react-dom/client';
-import App from './App.tsx';
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import App from './App';
+import AppProvider from './context/AppProvider';
+import './App.css';
 
-document.documentElement.dataset['theme'] = 'agh';
-
-createRoot(document.getElementById('root')!).render(
-  <StrictMode>
-    <App />
-  </StrictMode>
+ReactDOM.createRoot(document.getElementById('root')!).render(
+    <React.StrictMode>
+        <AppProvider>
+            <App/>
+        </AppProvider>
+    </React.StrictMode>,
 );

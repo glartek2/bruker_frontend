@@ -4,10 +4,11 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc -b && vite build",
+    "dev": "npm run gen-api && vite",
+    "build": "npm run gen-api && tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "gen-api": "npx openapi-typescript http://localhost:8000/api/schema -o ./src/api/schema.d.ts"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",

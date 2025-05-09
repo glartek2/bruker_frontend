@@ -1,4 +1,4 @@
-import {BrowserRouter, Routes, Route} from 'react-router';
+import { BrowserRouter, Routes, Route } from 'react-router';
 import './App.css';
 
 import NavBar from './components/Navbar';
@@ -11,43 +11,52 @@ import SearchRooms from './routes/SearchRooms';
 import ViewRoom from './routes/ViewRoom';
 import NotFound from './routes/NotFound';
 
-import {AnimatePresence} from 'framer-motion';
-import LoginView from "./routes/LoginView.tsx";
+import { AnimatePresence } from 'framer-motion';
+import LoginView from './routes/LoginView.tsx';
 import GuestOnlyRoute from './components/GuestOnlyRoute.tsx';
 import PrivateRoute from './components/PrivateRoute.tsx';
+import RegisterView from './routes/RegisterView.tsx';
 
 function App() {
-    return (
-        <BrowserRouter>
-            <NavBar/>
-            <AnimatePresence>
-                <Routes>
-                    <Route path='/' element={<Home/>}/>
-                    <Route
-                        path="/login"
-                        element={
-                            <GuestOnlyRoute>
-                                <LoginView/>
-                            </GuestOnlyRoute>
-                        }
-                    />
-                    <Route
-                        path="/profile"
-                        element={
-                            <PrivateRoute>
-                                <Profile/>
-                            </PrivateRoute>
-                        }
-                    />
-                    <Route path='/search' element={<SearchRooms/>}/>
-                    <Route path='/room' element={<ViewRoom/>}/>
-                    <Route path='*' element={<NotFound/>}/>
-                </Routes>
-            </AnimatePresence>
-            <Dock/>
-            <Footer/>
-        </BrowserRouter>
-    );
+  return (
+    <BrowserRouter>
+      <NavBar />
+      <AnimatePresence>
+        <Routes>
+          <Route path='/' element={<Home />} />
+          <Route
+            path='/login'
+            element={
+              <GuestOnlyRoute>
+                <LoginView />
+              </GuestOnlyRoute>
+            }
+          />
+          <Route
+            path='/register'
+            element={
+              <GuestOnlyRoute>
+                <RegisterView />
+              </GuestOnlyRoute>
+            }
+          />
+          <Route
+            path='/profile'
+            element={
+              <PrivateRoute>
+                <Profile />
+              </PrivateRoute>
+            }
+          />
+          <Route path='/search' element={<SearchRooms />} />
+          <Route path='/room' element={<ViewRoom />} />
+          <Route path='*' element={<NotFound />} />
+        </Routes>
+      </AnimatePresence>
+      <Dock />
+      <Footer />
+    </BrowserRouter>
+  );
 }
 
 export default App;

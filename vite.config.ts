@@ -7,6 +7,9 @@ export default defineConfig({
     plugins: [tailwindcss(), react()],
     server: {
         host: true,
-        port: 5173
+        port: 5173,
+        watch: {
+            usePolling: false
+        }
     }
 })

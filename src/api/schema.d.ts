@@ -47,8 +47,6 @@ export interface components {
             password: string;
         };
         Register: {
-            /** @description Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only. */
-            username: string;
             /** Format: email */
             email: string;
             password: string;

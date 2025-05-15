@@ -12,10 +12,10 @@ import ViewRoom from './routes/ViewRoom';
 import NotFound from './routes/NotFound';
 
 import { AnimatePresence } from 'framer-motion';
-import LoginView from './routes/LoginView.tsx';
+import Login from './routes/Login.tsx';
 import GuestOnlyRoute from './components/GuestOnlyRoute.tsx';
 import PrivateRoute from './components/PrivateRoute.tsx';
-import RegisterView from './routes/RegisterView.tsx';
+import Register from './routes/Register.tsx';
 
 function App() {
   return (
@@ -28,7 +28,7 @@ function App() {
             path='/login'
             element={
               <GuestOnlyRoute>
-                <LoginView />
+                <Login />
               </GuestOnlyRoute>
             }
           />
@@ -36,7 +36,7 @@ function App() {
             path='/register'
             element={
               <GuestOnlyRoute>
-                <RegisterView />
+                <Register />
               </GuestOnlyRoute>
             }
           />

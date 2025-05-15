@@ -4,6 +4,182 @@
  */
 
 export interface paths {
+    "/api/buildings/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["api_buildings_list"];
+        put?: never;
+        post: operations["api_buildings_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/buildings/{id}/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["api_buildings_retrieve"];
+        put: operations["api_buildings_update"];
+        post?: never;
+        delete: operations["api_buildings_destroy"];
+        options?: never;
+        head?: never;
+        patch: operations["api_buildings_partial_update"];
+        trace?: never;
+    };
+    "/api/equipment/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["api_equipment_list"];
+        put?: never;
+        post: operations["api_equipment_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/equipment/{id}/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["api_equipment_retrieve"];
+        put: operations["api_equipment_update"];
+        post?: never;
+        delete: operations["api_equipment_destroy"];
+        options?: never;
+        head?: never;
+        patch: operations["api_equipment_partial_update"];
+        trace?: never;
+    };
+    "/api/reservation/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["api_reservation_list"];
+        put?: never;
+        post: operations["api_reservation_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/reservation-info/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["api_reservation_info_list"];
+        put?: never;
+        post: operations["api_reservation_info_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/reservation-info/{id}/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["api_reservation_info_retrieve"];
+        put: operations["api_reservation_info_update"];
+        post?: never;
+        delete: operations["api_reservation_info_destroy"];
+        options?: never;
+        head?: never;
+        patch: operations["api_reservation_info_partial_update"];
+        trace?: never;
+    };
+    "/api/reservation/{id}/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["api_reservation_retrieve"];
+        put: operations["api_reservation_update"];
+        post?: never;
+        delete: operations["api_reservation_destroy"];
+        options?: never;
+        head?: never;
+        patch: operations["api_reservation_partial_update"];
+        trace?: never;
+    };
+    "/api/rooms/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["api_rooms_list"];
+        put?: never;
+        post: operations["api_rooms_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/rooms/{id}/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["api_rooms_retrieve"];
+        put: operations["api_rooms_update"];
+        post?: never;
+        delete: operations["api_rooms_destroy"];
+        options?: never;
+        head?: never;
+        patch: operations["api_rooms_partial_update"];
+        trace?: never;
+    };
+    "/users/activate/{uidb64}/{token}/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["users_activate_retrieve"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/users/login/": {
         parameters: {
             query?: never;
@@ -15,6 +191,38 @@ export interface paths {
         put?: never;
         /** @description Log in with username and password */
         post: operations["users_login_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/users/logout/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["users_logout_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/users/password_reset_confirm/{uidb64}/{token}/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["users_password_reset_confirm_create"];
         delete?: never;
         options?: never;
         head?: never;
@@ -38,18 +246,133 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/users/reset_password/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["users_reset_password_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
 }
 export type webhooks = Record<string, never>;
 export interface components {
     schemas: {
+        Building: {
+            readonly id: number;
+            name: string;
+            address: string;
+            department?: string;
+            description?: string;
+        };
+        CustomUser: {
+            readonly id: number;
+            /** Format: email */
+            email: string;
+        };
+        Equipment: {
+            readonly id: number;
+            details: {
+                [key: string]: unknown;
+            };
+        };
         Login: {
             username: string;
             password: string;
         };
+        Message: {
+            message: string;
+        };
+        PatchedBuilding: {
+            readonly id?: number;
+            name?: string;
+            address?: string;
+            department?: string;
+            description?: string;
+        };
+        PatchedEquipment: {
+            readonly id?: number;
+            details?: {
+                [key: string]: unknown;
+            };
+        };
+        PatchedReservation: {
+            readonly id?: number;
+            readonly room?: components["schemas"]["Room"];
+            room_id?: number;
+            readonly reservation_info?: components["schemas"]["ReservationInfo"];
+            reservation_info_id?: number;
+            reservation_info_data?: components["schemas"]["ReservationInfo"];
+            /** Format: date-time */
+            date_time?: string;
+        };
+        PatchedReservationInfo: {
+            readonly id?: number;
+            readonly user?: components["schemas"]["CustomUser"];
+            user_id?: number;
+            description?: string;
+        };
+        PatchedRoom: {
+            readonly id?: number;
+            capacity?: number;
+            room_number?: string;
+            readonly building?: components["schemas"]["Building"];
+            readonly equipment?: components["schemas"]["Equipment"];
+            building_data?: components["schemas"]["Building"];
+            equipment_data?: components["schemas"]["Equipment"];
+            building_id?: number;
+            equipment_id?: number;
+        };
         Register: {
+            /** @description Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only. */
+            username: string;
             /** Format: email */
             email: string;
             password: string;
+            password2: string;
+        };
+        Reservation: {
+            readonly id: number;
+            readonly room: components["schemas"]["Room"];
+            room_id: number;
+            readonly reservation_info: components["schemas"]["ReservationInfo"];
+            reservation_info_id: number;
+            reservation_info_data?: components["schemas"]["ReservationInfo"];
+            /** Format: date-time */
+            date_time: string;
+        };
+        ReservationInfo: {
+            readonly id: number;
+            readonly user: components["schemas"]["CustomUser"];
+            user_id: number;
+            description: string;
+        };
+        ResetPasswordConfirm: {
+            new_password: string;
+            new_password2: string;
+        };
+        ResetPasswordRequest: {
+            /** Format: email */
+            email: string;
+        };
+        Room: {
+            readonly id: number;
+            capacity: number;
+            room_number: string;
+            readonly building: components["schemas"]["Building"];
+            readonly equipment: components["schemas"]["Equipment"];
+            building_data?: components["schemas"]["Building"];
+            equipment_data?: components["schemas"]["Equipment"];
+            building_id?: number;
+            equipment_id?: number;
         };
         TokenResponse: {
             token: string;
@@ -63,6 +386,772 @@ export interface components {
 }
 export type $defs = Record<string, never>;
 export interface operations {
+    api_buildings_list: {
+        parameters: {
+            query?: {
+                /** @description Which field to use when ordering the results. */
+                ordering?: string;
+                /** @description A search term. */
+                search?: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Building"][];
+                };
+            };
+        };
+    };
+    api_buildings_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["Building"];
+                "application/x-www-form-urlencoded": components["schemas"]["Building"];
+                "multipart/form-data": components["schemas"]["Building"];
+            };
+        };
+        responses: {
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Building"];
+                };
+            };
+        };
+    };
+    api_buildings_retrieve: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this building. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Building"];
+                };
+            };
+        };
+    };
+    api_buildings_update: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this building. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["Building"];
+                "application/x-www-form-urlencoded": components["schemas"]["Building"];
+                "multipart/form-data": components["schemas"]["Building"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Building"];
+                };
+            };
+        };
+    };
+    api_buildings_destroy: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this building. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description No response body */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    api_buildings_partial_update: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this building. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["PatchedBuilding"];
+                "application/x-www-form-urlencoded": components["schemas"]["PatchedBuilding"];
+                "multipart/form-data": components["schemas"]["PatchedBuilding"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Building"];
+                };
+            };
+        };
+    };
+    api_equipment_list: {
+        parameters: {
+            query?: {
+                /** @description A search term. */
+                search?: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Equipment"][];
+                };
+            };
+        };
+    };
+    api_equipment_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["Equipment"];
+                "application/x-www-form-urlencoded": components["schemas"]["Equipment"];
+                "multipart/form-data": components["schemas"]["Equipment"];
+            };
+        };
+        responses: {
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Equipment"];
+                };
+            };
+        };
+    };
+    api_equipment_retrieve: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this equipment. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Equipment"];
+                };
+            };
+        };
+    };
+    api_equipment_update: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this equipment. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["Equipment"];
+                "application/x-www-form-urlencoded": components["schemas"]["Equipment"];
+                "multipart/form-data": components["schemas"]["Equipment"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Equipment"];
+                };
+            };
+        };
+    };
+    api_equipment_destroy: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this equipment. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description No response body */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    api_equipment_partial_update: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this equipment. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["PatchedEquipment"];
+                "application/x-www-form-urlencoded": components["schemas"]["PatchedEquipment"];
+                "multipart/form-data": components["schemas"]["PatchedEquipment"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Equipment"];
+                };
+            };
+        };
+    };
+    api_reservation_list: {
+        parameters: {
+            query?: {
+                /** @description Which field to use when ordering the results. */
+                ordering?: string;
+                /** @description A search term. */
+                search?: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Reservation"][];
+                };
+            };
+        };
+    };
+    api_reservation_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["Reservation"];
+                "application/x-www-form-urlencoded": components["schemas"]["Reservation"];
+                "multipart/form-data": components["schemas"]["Reservation"];
+            };
+        };
+        responses: {
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Reservation"];
+                };
+            };
+        };
+    };
+    api_reservation_info_list: {
+        parameters: {
+            query?: {
+                /** @description Which field to use when ordering the results. */
+                ordering?: string;
+                /** @description A search term. */
+                search?: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ReservationInfo"][];
+                };
+            };
+        };
+    };
+    api_reservation_info_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ReservationInfo"];
+                "application/x-www-form-urlencoded": components["schemas"]["ReservationInfo"];
+                "multipart/form-data": components["schemas"]["ReservationInfo"];
+            };
+        };
+        responses: {
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ReservationInfo"];
+                };
+            };
+        };
+    };
+    api_reservation_info_retrieve: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this reservation info. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ReservationInfo"];
+                };
+            };
+        };
+    };
+    api_reservation_info_update: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this reservation info. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ReservationInfo"];
+                "application/x-www-form-urlencoded": components["schemas"]["ReservationInfo"];
+                "multipart/form-data": components["schemas"]["ReservationInfo"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ReservationInfo"];
+                };
+            };
+        };
+    };
+    api_reservation_info_destroy: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this reservation info. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description No response body */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    api_reservation_info_partial_update: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this reservation info. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["PatchedReservationInfo"];
+                "application/x-www-form-urlencoded": components["schemas"]["PatchedReservationInfo"];
+                "multipart/form-data": components["schemas"]["PatchedReservationInfo"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ReservationInfo"];
+                };
+            };
+        };
+    };
+    api_reservation_retrieve: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this reservation. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Reservation"];
+                };
+            };
+        };
+    };
+    api_reservation_update: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this reservation. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["Reservation"];
+                "application/x-www-form-urlencoded": components["schemas"]["Reservation"];
+                "multipart/form-data": components["schemas"]["Reservation"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Reservation"];
+                };
+            };
+        };
+    };
+    api_reservation_destroy: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this reservation. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description No response body */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    api_reservation_partial_update: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this reservation. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["PatchedReservation"];
+                "application/x-www-form-urlencoded": components["schemas"]["PatchedReservation"];
+                "multipart/form-data": components["schemas"]["PatchedReservation"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Reservation"];
+                };
+            };
+        };
+    };
+    api_rooms_list: {
+        parameters: {
+            query?: {
+                building__name?: string;
+                building__name__icontains?: string;
+                capacity?: number;
+                capacity__gte?: number;
+                capacity__lte?: number;
+                /** @description Which field to use when ordering the results. */
+                ordering?: string;
+                room_number?: string;
+                room_number__icontains?: string;
+                /** @description A search term. */
+                search?: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Room"][];
+                };
+            };
+        };
+    };
+    api_rooms_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["Room"];
+                "application/x-www-form-urlencoded": components["schemas"]["Room"];
+                "multipart/form-data": components["schemas"]["Room"];
+            };
+        };
+        responses: {
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Room"];
+                };
+            };
+        };
+    };
+    api_rooms_retrieve: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this room. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Room"];
+                };
+            };
+        };
+    };
+    api_rooms_update: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this room. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["Room"];
+                "application/x-www-form-urlencoded": components["schemas"]["Room"];
+                "multipart/form-data": components["schemas"]["Room"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Room"];
+                };
+            };
+        };
+    };
+    api_rooms_destroy: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this room. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description No response body */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    api_rooms_partial_update: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this room. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["PatchedRoom"];
+                "application/x-www-form-urlencoded": components["schemas"]["PatchedRoom"];
+                "multipart/form-data": components["schemas"]["PatchedRoom"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Room"];
+                };
+            };
+        };
+    };
+    users_activate_retrieve: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                token: string;
+                uidb64: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description No response body */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
     users_login_create: {
         parameters: {
             query?: never;
@@ -88,6 +1177,59 @@ export interface operations {
             };
         };
     };
+    users_logout_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Token deleted */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    users_password_reset_confirm_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                token: string;
+                uidb64: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ResetPasswordConfirm"];
+                "application/x-www-form-urlencoded": components["schemas"]["ResetPasswordConfirm"];
+                "multipart/form-data": components["schemas"]["ResetPasswordConfirm"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Message"];
+                };
+            };
+            /** @description Invalid token or validation error */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
     users_register_create: {
         parameters: {
             query?: never;
@@ -110,6 +1252,37 @@ export interface operations {
                 content: {
                     "application/json": components["schemas"]["TokenResponse"];
                 };
+            };
+        };
+    };
+    users_reset_password_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ResetPasswordRequest"];
+                "application/x-www-form-urlencoded": components["schemas"]["ResetPasswordRequest"];
+                "multipart/form-data": components["schemas"]["ResetPasswordRequest"];
+            };
+        };
+        responses: {
+            /** @description Reset link sent if user exist */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Validation error */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
             };
         };
     };

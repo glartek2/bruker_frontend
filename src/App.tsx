@@ -49,7 +49,9 @@ function App() {
             }
           />
           <Route path='/search' element={<SearchRooms />} />
-          <Route path='/room' element={<ViewRoom />} />
+          <Route path='/room'>
+            <Route path=':roomId' element={<ViewRoom />} />
+          </Route>
           <Route path='*' element={<NotFound />} />
         </Routes>
       </AnimatePresence>

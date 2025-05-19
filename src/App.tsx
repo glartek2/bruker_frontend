@@ -51,6 +51,7 @@ function App() {
           <Route path='/search' element={<SearchRooms />} />
           <Route path='/room'>
             <Route path=':roomId' element={<ViewRoom />} />
+            <Route path=':roomId/:weekId' element={<ViewRoom />} />
           </Route>
           <Route path='*' element={<NotFound />} />
         </Routes>

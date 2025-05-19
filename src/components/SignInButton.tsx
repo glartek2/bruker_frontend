@@ -4,10 +4,10 @@ import { NavLink } from 'react-router';
 import { useAuth } from '../context/AppContext';
 
 function SignInButton() {
-  const { state } = useAuth();
-  const isGuest = state.user === null;
+  // const { state } = useAuth();
+  // const isGuest = state?.user === null;
 
-  if (isGuest) {
+  if (true) {
     return (
       <NavLink className='btn' to={'/login'}>
         <LoginIcon />

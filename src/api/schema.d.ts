@@ -979,8 +979,15 @@ export interface operations {
     api_rooms_list: {
         parameters: {
             query?: {
+                building__name?: string;
+                building__name__icontains?: string;
+                capacity?: number;
+                capacity__gte?: number;
+                capacity__lte?: number;
                 /** @description Which field to use when ordering the results. */
                 ordering?: string;
+                room_number?: string;
+                room_number__icontains?: string;
                 /** @description A search term. */
                 search?: string;
             };

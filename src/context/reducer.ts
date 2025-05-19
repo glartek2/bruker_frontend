@@ -9,18 +9,18 @@ export enum ActionType {
   EDIT_USER_FIELD,
 }
 
-export type Action =
+export type Action<T> =
   | { type: ActionType.SET_USER; payload: User | null }
   | {
       type: ActionType.EDIT_USER_FIELD;
-      payload: { field: string; value: any };
+      payload: { field: string; value: T };
     };
 
 export const initialState: AppState = {
   user: null,
 };
 
-const reducer = (state: AppState, action: Action): AppState => {
+const reducer = <T>(state: AppState, action: Action<T>): AppState => {
   switch (action.type) {
     case ActionType.SET_USER:
       return { ...state, user: action.payload };

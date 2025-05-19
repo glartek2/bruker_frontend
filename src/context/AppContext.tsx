@@ -5,7 +5,7 @@ export interface AppContextType {
   state: {
     user: User | null;
   };
-  dispatch: React.Dispatch<any>;
+  dispatch: React.Dispatch<unknown>;
 }
 
 export const AppContext = React.createContext<AppContextType | undefined>(

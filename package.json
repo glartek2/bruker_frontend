@@ -4,10 +4,11 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc -b && vite build",
+    "dev": "npm run gen-api && vite",
+    "build": "npm run gen-api && tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "gen-api": "sleep 10 && npx openapi-typescript http://bruker-backend:8000/api/schema -o ./src/api/schema.d.ts"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
@@ -24,8 +25,8 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-router": "^7.5.3",
-    "react-router-dom": "^7.5.3",
-    "tailwindcss": "^4.1.0"
+    "tailwindcss": "^4.1.0",
+    "use-debounce": "^10.0.4"
   },
   "devDependencies": {
     "@eslint/js": "^9.21.0",

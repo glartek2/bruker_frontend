@@ -15,6 +15,11 @@ function HourCard({ slot }: HourCardProps) {
   }
 
   function EmptyCard({ slot }: { slot: EmptySlot }) {
+    function reserve() {
+      const dialog = document.getElementById('reserve_modal') as HTMLDialogElement;
+      dialog?.showModal();
+    }
+
     return (
       <div className='card border border-base-content/8 shadow-md bg-base-300 w-32 h-28'>
         <div className='card-body'>
@@ -22,7 +27,7 @@ function HourCard({ slot }: HourCardProps) {
             {slot.time}
           </div>
           <div className='card-actions justify-center'>
-            <button className='btn'>Rezerwuj</button>
+            <button className='btn' onClick={reserve}>Rezerwuj</button>
           </div>
         </div>
       </div>

@@ -8,7 +8,7 @@
     "build": "npm run gen-api && tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "gen-api": "sleep 10 && npx openapi-typescript http://138.68.91.169/api/api/schema -o ./src/api/schema.d.ts"
+    "gen-api": "sleep 10 && npx openapi-typescript http://bruker-backend:8000/api/schema -o ./src/api/schema.d.ts"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",

@@ -16,6 +16,8 @@ import Login from './routes/Login.tsx';
 import GuestOnlyRoute from './components/GuestOnlyRoute.tsx';
 import PrivateRoute from './components/PrivateRoute.tsx';
 import Register from './routes/Register.tsx';
+import MoveReservation from './routes/MoveReservation.tsx';
+import Activate from './routes/Activate.tsx';
 
 function App() {
   return (
@@ -53,6 +55,11 @@ function App() {
             <Route path=':roomId' element={<ViewRoom />} />
             <Route path=':roomId/:weekId' element={<ViewRoom />} />
           </Route>
+          <Route
+            path='/move_reservation/:reservationId'
+            element={<MoveReservation />}
+          />
+          <Route path='/activate/:uidb64/:token' element={<Activate />} />
           <Route path='*' element={<NotFound />} />
         </Routes>
       </AnimatePresence>

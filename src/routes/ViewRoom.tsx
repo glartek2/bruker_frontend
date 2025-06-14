@@ -1,5 +1,5 @@
-import { DaySlots } from '../model/Slot';
-import WeekRoomSlots from '../components/room/WeekRoomSlots';
+import { DayBin } from '../model/Slots';
+import WeekSchedule from '../components/room/WeekSchedule';
 import RouteContainer from '../components/RouteContainer';
 import { NavLink, useParams } from 'react-router';
 import createClient from 'openapi-fetch';
@@ -10,7 +10,7 @@ const client = createClient<paths>({ baseUrl: import.meta.env.VITE_API_URL });
 
 type Room = components['schemas']['Room'];
 
-const slots: DaySlots[] = [
+const slots: DayBin[] = [
   {
     day: 'Pon',
     rows: [
@@ -195,7 +195,7 @@ function ViewRoom() {
                 </NavLink>
               </div>
             </div>
-            <WeekRoomSlots daysSlots={slots} />
+            {/* <WeekSchedule daysSlots={slots} /> */}
           </div>
         </div>
         <div></div>

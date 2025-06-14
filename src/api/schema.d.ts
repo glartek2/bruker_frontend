@@ -36,6 +36,38 @@ export interface paths {
         patch: operations["api_buildings_partial_update"];
         trace?: never;
     };
+    "/api/class_groups/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["api_class_groups_list"];
+        put?: never;
+        post: operations["api_class_groups_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/class_groups/{id}/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["api_class_groups_retrieve"];
+        put: operations["api_class_groups_update"];
+        post?: never;
+        delete: operations["api_class_groups_destroy"];
+        options?: never;
+        head?: never;
+        patch: operations["api_class_groups_partial_update"];
+        trace?: never;
+    };
     "/api/equipment/": {
         parameters: {
             query?: never;
@@ -124,12 +156,29 @@ export interface paths {
             cookie?: never;
         };
         get: operations["api_reservation_retrieve"];
+        /** @description Update reservation. Staff can update immediately.Class representatives trigger email confirmation. */
         put: operations["api_reservation_update"];
         post?: never;
         delete: operations["api_reservation_destroy"];
         options?: never;
         head?: never;
         patch: operations["api_reservation_partial_update"];
+        trace?: never;
+    };
+    "/api/reservation_update_confirmation/{uidb64}/{token}/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["api_reservation_update_confirmation_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
         trace?: never;
     };
     "/api/rooms/": {
@@ -162,6 +211,23 @@ export interface paths {
         options?: never;
         head?: never;
         patch: operations["api_rooms_partial_update"];
+        trace?: never;
+    };
+    "/api/rooms/available/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Get rooms available between the given start and end time. */
+        get: operations["api_rooms_available_list"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
         trace?: never;
     };
     "/users/activate/{uidb64}/{token}/": {
@@ -273,6 +339,13 @@ export interface components {
             department?: string;
             description?: string;
         };
+        ClassGroup: {
+            readonly id: number;
+            name: string;
+            members: number[];
+            class_representatives: number[];
+            instructors?: number[];
+        };
         CustomUser: {
             readonly id: number;
             /** Format: email */
@@ -298,6 +371,13 @@ export interface components {
             department?: string;
             description?: string;
         };
+        PatchedClassGroup: {
+            readonly id?: number;
+            name?: string;
+            members?: number[];
+            class_representatives?: number[];
+            instructors?: number[];
+        };
         PatchedEquipment: {
             readonly id?: number;
             details?: {
@@ -313,11 +393,15 @@ export interface components {
             reservation_info_data?: components["schemas"]["ReservationInfo"];
             /** Format: date-time */
             date_time?: string;
+            /** Format: date-time */
+            proposed_date_time?: string | null;
         };
         PatchedReservationInfo: {
             readonly id?: number;
             readonly user?: components["schemas"]["CustomUser"];
             user_id?: number;
+            readonly group?: components["schemas"]["ClassGroup"];
+            group_id?: number;
             description?: string;
         };
         PatchedRoom: {
@@ -344,15 +428,19 @@ export interface components {
             readonly room: components["schemas"]["Room"];
             room_id: number;
             readonly reservation_info: components["schemas"]["ReservationInfo"];
-            reservation_info_id: number;
+            reservation_info_id?: number;
             reservation_info_data?: components["schemas"]["ReservationInfo"];
             /** Format: date-time */
             date_time: string;
+            /** Format: date-time */
+            proposed_date_time?: string | null;
         };
         ReservationInfo: {
             readonly id: number;
             readonly user: components["schemas"]["CustomUser"];
             user_id: number;
+            readonly group: components["schemas"]["ClassGroup"];
+            group_id: number;
             description: string;
         };
         ResetPasswordConfirm: {
@@ -534,6 +622,154 @@ export interface operations {
             };
         };
     };
+    api_class_groups_list: {
+        parameters: {
+            query?: {
+                /** @description Which field to use when ordering the results. */
+                ordering?: string;
+                /** @description A search term. */
+                search?: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ClassGroup"][];
+                };
+            };
+        };
+    };
+    api_class_groups_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ClassGroup"];
+                "application/x-www-form-urlencoded": components["schemas"]["ClassGroup"];
+                "multipart/form-data": components["schemas"]["ClassGroup"];
+            };
+        };
+        responses: {
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ClassGroup"];
+                };
+            };
+        };
+    };
+    api_class_groups_retrieve: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this class group. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ClassGroup"];
+                };
+            };
+        };
+    };
+    api_class_groups_update: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this class group. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ClassGroup"];
+                "application/x-www-form-urlencoded": components["schemas"]["ClassGroup"];
+                "multipart/form-data": components["schemas"]["ClassGroup"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ClassGroup"];
+                };
+            };
+        };
+    };
+    api_class_groups_destroy: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this class group. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description No response body */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    api_class_groups_partial_update: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this class group. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["PatchedClassGroup"];
+                "application/x-www-form-urlencoded": components["schemas"]["PatchedClassGroup"];
+                "multipart/form-data": components["schemas"]["PatchedClassGroup"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ClassGroup"];
+                };
+            };
+        };
+    };
     api_equipment_list: {
         parameters: {
             query?: {
@@ -683,10 +919,8 @@ export interface operations {
     api_reservation_list: {
         parameters: {
             query?: {
-                /** @description Which field to use when ordering the results. */
-                ordering?: string;
-                /** @description A search term. */
-                search?: string;
+                date_time__gte?: string;
+                date_time__lte?: string;
             };
             header?: never;
             path?: never;
@@ -917,13 +1151,33 @@ export interface operations {
             };
         };
         responses: {
+            /** @description Reservation updated successfully. */
             200: {
                 headers: {
                     [name: string]: unknown;
                 };
-                content: {
-                    "application/json": components["schemas"]["Reservation"];
+                content?: never;
+            };
+            /** @description Confirmation email sent to reservation owner. */
+            202: {
+                headers: {
+                    [name: string]: unknown;
                 };
+                content?: never;
+            };
+            /** @description Validation failed. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description You do not have permission to modify this reservation. */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
             };
         };
     };
@@ -973,6 +1227,34 @@ export interface operations {
                 content: {
                     "application/json": components["schemas"]["Reservation"];
                 };
+            };
+        };
+    };
+    api_reservation_update_confirmation_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                token: string;
+                uidb64: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Reservation updated correctly */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Invalid token or validation error */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
             };
         };
     };
@@ -1127,6 +1409,41 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["Room"];
+                };
+            };
+        };
+    };
+    api_rooms_available_list: {
+        parameters: {
+            query: {
+                building__name?: string;
+                building__name__icontains?: string;
+                capacity?: number;
+                capacity__gte?: number;
+                capacity__lte?: number;
+                /** @description End datetime in ISO 8601 format. */
+                end: string;
+                /** @description Which field to use when ordering the results. */
+                ordering?: string;
+                room_number?: string;
+                room_number__icontains?: string;
+                /** @description A search term. */
+                search?: string;
+                /** @description Start datetime in ISO 8601 format. */
+                start: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Room"][];
                 };
             };
         };

@@ -1,9 +1,8 @@
 import React, { useContext } from 'react';
-import { User } from '../model/User';
 
 export interface AppContextType {
   state: {
-    user: User | null;
+    user: { token: string } | null;
   };
   dispatch: React.Dispatch<unknown>;
 }

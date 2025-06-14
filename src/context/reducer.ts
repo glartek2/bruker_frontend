@@ -1,7 +1,5 @@
-import { User } from '../model/User';
-
 export interface AppState {
-  user: User | null;
+  user: { token: string } | null;
 }
 
 export enum ActionType {
@@ -10,7 +8,7 @@ export enum ActionType {
 }
 
 export type Action<T> =
-  | { type: ActionType.SET_USER; payload: User | null }
+  | { type: ActionType.SET_USER; payload: { token: string } | null }
   | {
       type: ActionType.EDIT_USER_FIELD;
       payload: { field: string; value: T };
@@ -23,8 +21,10 @@ export const initialState: AppState = {
 const reducer = <T>(state: AppState, action: Action<T>): AppState => {
   switch (action.type) {
     case ActionType.SET_USER:
+      console.log('set_user', action.payload);
       return { ...state, user: action.payload };
     case ActionType.EDIT_USER_FIELD:
+      console.log('edit_user_field', action.payload);
       if (!state.user) return state;
       return {
         ...state,

@@ -16,10 +16,10 @@ function SignInButton() {
     );
   } else {
     return (
-      <button className='btn btn-soft btn-accent'>
+      <NavLink className='btn btn-soft btn-accent' to={'/profile'}>
         <AccountBoxIcon />
         Profil
-      </button>
+      </NavLink>
     );
   }
 }

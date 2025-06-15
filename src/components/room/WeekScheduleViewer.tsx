@@ -4,10 +4,6 @@ import { components, paths } from '../../api/schema';
 import createClient from 'openapi-fetch';
 import { useAppContext } from '../../context/AppContext';
 import { dateFromDate, dateTimesOfWeek } from '../../model/time';
-import ViewProposedModal from '../modal/ViewProposedModal';
-import ViewAcceptedModal from '../modal/ViewAcceptedModal';
-import EditAcceptedModal from '../modal/EditAcceptedModal';
-import ReserveEmptyModal from '../modal/ReserveEmptyModal';
 
 type Reservation = components['schemas']['Reservation'];
 
@@ -50,10 +46,6 @@ function WeekScheduleViewer({ variant }: WeekScheduleViewerProps) {
 
   return (
     <div>
-      <EditAcceptedModal />
-      <ReserveEmptyModal />
-      <ViewAcceptedModal />
-      <ViewProposedModal />
       <div className='flex justify-center'>
         <div className='join'>
           <button

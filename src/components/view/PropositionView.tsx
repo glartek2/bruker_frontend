@@ -1,5 +1,6 @@
 import { AcceptedSlot, ProposedSlot } from '../../model/slots';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
+import { dateFromDate, timeFromDate } from '../../model/time';
 
 function PropositionView({ acceptedSlot, proposedSlot }: PropositionViewProps) {
   return (
@@ -9,8 +10,9 @@ function PropositionView({ acceptedSlot, proposedSlot }: PropositionViewProps) {
       </p>
       <p className='text-right'>
         <span className='badge badge-soft badge-accent'>
-          {acceptedSlot?.date} {acceptedSlot?.startTime} -{' '}
-          {acceptedSlot?.endTime}
+          {dateFromDate(acceptedSlot?.startTime)}{' '}
+          {timeFromDate(acceptedSlot?.startTime)} -{' '}
+          {timeFromDate(acceptedSlot?.endTime)}
         </span>
       </p>
       <p className='text-center'>
@@ -18,8 +20,9 @@ function PropositionView({ acceptedSlot, proposedSlot }: PropositionViewProps) {
       </p>
       <p className='text-left'>
         <span className='badge badge-soft badge-warning'>
-          {proposedSlot?.date} {proposedSlot?.startTime} -{' '}
-          {proposedSlot?.endTime}
+          {dateFromDate(proposedSlot?.startTime)}{' '}
+          {timeFromDate(proposedSlot?.startTime)} -{' '}
+          {timeFromDate(proposedSlot?.endTime)}
         </span>
       </p>
       <p>

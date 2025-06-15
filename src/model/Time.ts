@@ -51,13 +51,15 @@ function dayFromDate(date: Date): Day {
   }
 }
 
-function dateFromDate(date: Date): string {
+function dateFromDate(date: Date | undefined): string {
+  if (!date) return '---';
   const d = date.getDate();
   const m = date.getMonth();
   return d + ' ' + monthNames[m];
 }
 
-function timeFromDate(date: Date): string {
+function timeFromDate(date: Date | undefined): string {
+  if (!date) return '--:--';
   const h = date.getHours();
   const m = date.getMinutes();
   return h.toString() + ':' + m.toString().padStart(2, '0');
@@ -77,49 +79,61 @@ interface DayBin {
 }
 
 function defaultBin(dateTime: Date): DayBin {
-  const date = dateFromDate(dateTime);
+  function getStartTime(dateTime: Date, slotId: number) {
+    const startTime = new Date(dateTime);
+    const minutesOffset = slotId * 105;
+    const h = 8 + Math.floor(minutesOffset / 60);
+    const m = (0 + minutesOffset) % 60;
+    startTime.setHours(h);
+    startTime.setMinutes(m);
+    return startTime;
+  }
+
+  function getEndTime(dateTime: Date, slotId: number) {
+    const endTime = new Date(dateTime);
+    const minutesOffset = 90 + slotId * 105;
+    const h = 8 + Math.floor(minutesOffset / 60);
+    const m = (0 + minutesOffset) % 60;
+    endTime.setHours(h);
+    endTime.setMinutes(m);
+    return endTime;
+  }
+
   const day = dayFromDate(dateTime);
   const slots: { [startTime: string]: AnySlot } = {
     '8:00': {
-      date,
-      startTime: '8:00',
-      endTime: '9:30',
+      startTime: getStartTime(dateTime, 0),
+      endTime: getEndTime(dateTime, 0),
       type: 'empty',
     } satisfies AnySlot,
     '9:45': {
-      date,
-      startTime: '9:45',
-      endTime: '11:15',
+      startTime: getStartTime(dateTime, 1),
+      endTime: getEndTime(dateTime, 1),
       type: 'empty',
     } satisfies AnySlot,
     '11:30': {
-      date,
-      startTime: '11:30',
-      endTime: '13:00',
+      startTime: getStartTime(dateTime, 2),
+      endTime: getEndTime(dateTime, 2),
       type: 'empty',
     } satisfies AnySlot,
     '13:15': {
-      date,
-      startTime: '13:15',
-      endTime: '14:45',
+      startTime: getStartTime(dateTime, 3),
+      endTime: getEndTime(dateTime, 3),
       type: 'empty',
     } satisfies AnySlot,
     '15:00': {
-      date,
-      startTime: '15:00',
-      endTime: '16:30',
+      startTime: getStartTime(dateTime, 4),
+      endTime: getEndTime(dateTime, 4),
       type: 'empty',
     } satisfies AnySlot,
     '16:45': {
-      date,
-      startTime: '16:45',
-      endTime: '18:15',
+      startTime: getStartTime(dateTime, 5),
+      endTime: getEndTime(dateTime, 5),
       type: 'empty',
     } satisfies AnySlot,
     '18:30': {
-      date,
-      startTime: '18:30',
-      endTime: '20:00',
+      startTime: getStartTime(dateTime, 6),
+      endTime: getEndTime(dateTime, 6),
       type: 'empty',
     } satisfies AnySlot,
   };

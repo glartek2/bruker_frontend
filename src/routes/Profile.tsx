@@ -1,3 +1,5 @@
+import EditAcceptedModal from '../components/modal/EditAcceptedModal';
+import ViewProposedModal from '../components/modal/ViewProposedModal';
 import { ScheduleVariant } from '../components/room/WeekSchedule';
 import WeekScheduleViewer from '../components/room/WeekScheduleViewer';
 import RouteContainer from '../components/RouteContainer';
@@ -5,6 +7,8 @@ import RouteContainer from '../components/RouteContainer';
 function Profile() {
   return (
     <RouteContainer>
+      <EditAcceptedModal />
+      <ViewProposedModal />
       <div className='grid grid-cols-[1fr_4fr_1fr] p-8'>
         <div></div>
         <div className='space-y-8'>

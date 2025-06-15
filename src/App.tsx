@@ -57,11 +57,7 @@ function App() {
           </Route>
           <Route path='/reservation'>
             <Route
-              path='new_room/:reservationId'
-              element={<MoveReservation />}
-            />
-            <Route
-              path='new_time/:reservationId'
+              path=':action/:reservationId'
               element={<MoveReservation />}
             />
           </Route>

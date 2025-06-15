@@ -1,10 +1,10 @@
 import LoginIcon from '@mui/icons-material/Login';
 import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import { NavLink } from 'react-router';
-import { useAuth } from '../context/AppContext';
+import { useAppContext } from '../context/AppContext';
 
 function SignInButton() {
-  const { state } = useAuth();
+  const { state } = useAppContext();
   const isGuest = state?.user === null;
 
   if (isGuest) {

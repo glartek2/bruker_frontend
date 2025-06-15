@@ -1,4 +1,5 @@
-import WeekViewer from '../components/room/WeekViewer';
+import { ScheduleVariant } from '../components/room/WeekSchedule';
+import WeekScheduleViewer from '../components/room/WeekScheduleViewer';
 import RouteContainer from '../components/RouteContainer';
 
 function Profile() {
@@ -9,7 +10,7 @@ function Profile() {
         <div className='space-y-4'>
           <h1>Witaj ponownie</h1>
           <h2 className='text-2xl'>Twój plan</h2>
-          <WeekViewer />
+          <WeekScheduleViewer variant={ScheduleVariant.VIEW} />
         </div>
         <div></div>
       </div>

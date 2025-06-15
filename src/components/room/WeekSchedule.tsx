@@ -5,15 +5,20 @@ import {
   dayName,
   defaultBin,
   timeFromDate,
-} from '../../model/Time';
+} from '../../model/time';
 import { components } from '../../api/schema';
-import { days } from '../../model/Time';
-import { toAcceptedSlot, toProposedSlot } from '../../model/Slots';
+import { toAcceptedSlot, toProposedSlot } from '../../model/slots';
 import { useMemo } from 'react';
+import { reservationLocation } from '../../model/reservation';
 
 type Reservation = components['schemas']['Reservation'];
 
-function WeekSchedule({ schedule }: WeekScheduleProps) {
+enum ScheduleVariant {
+  VIEW, // for schedule viewer
+  MOVE, // for move reservation
+}
+
+function WeekSchedule({ dateTimes, schedule, variant }: WeekScheduleProps) {
   function DayCol({ dayBin }: DayColProps) {
     const { day, slots } = dayBin;
     return (
@@ -25,7 +30,7 @@ function WeekSchedule({ schedule }: WeekScheduleProps) {
         </thead>
         <tbody>
           {Object.values(slots).map((slot, index) => (
-            <HourCard key={index} slot={slot} />
+            <HourCard key={index} slot={slot} variant={variant} />
           ))}
         </tbody>
       </table>
@@ -35,8 +40,8 @@ function WeekSchedule({ schedule }: WeekScheduleProps) {
   const widths = 'w-80 sm:w-md md:w-xl lg:w-3xl xl:w-full';
 
   const dayBins = useMemo<DayBin[]>(
-    () => scheduleToDayBins(schedule),
-    [schedule]
+    () => scheduleToDayBins(dateTimes, schedule),
+    [dateTimes, schedule]
   );
 
   return (
@@ -52,16 +57,15 @@ function WeekSchedule({ schedule }: WeekScheduleProps) {
   );
 }
 
-function reservationLocation(reservation: Reservation): string {
-  const room = reservation.room;
-  return room.room_number + ' / ' + room.building.name;
-}
-
-function scheduleToDayBins(schedule: Reservation[]): DayBin[] {
-  const bins = days.map(defaultBin);
+function scheduleToDayBins(
+  dateTimes: Date[],
+  schedule: Reservation[]
+): DayBin[] {
+  const bins = dateTimes.map(defaultBin);
   for (const reservation of schedule) {
-    const acceptedDay = dayFromDate(reservation.date_time);
-    const acceptedTime = timeFromDate(reservation.date_time);
+    const acceptedDateTime = new Date(reservation.date_time);
+    const acceptedDay = dayFromDate(acceptedDateTime);
+    const acceptedTime = timeFromDate(acceptedDateTime);
     console.log(acceptedTime);
 
     const acceptedBin = bins[acceptedDay];
@@ -78,8 +82,9 @@ function scheduleToDayBins(schedule: Reservation[]): DayBin[] {
 
     console.log(reservation.proposed_date_time);
     if (reservation.proposed_date_time) {
-      const proposedDay = dayFromDate(reservation.proposed_date_time);
-      const proposedTime = timeFromDate(reservation.proposed_date_time);
+      const proposedDateTime = new Date(reservation.proposed_date_time);
+      const proposedDay = dayFromDate(proposedDateTime);
+      const proposedTime = timeFromDate(proposedDateTime);
 
       const proposedBin = bins[proposedDay];
       try {
@@ -99,11 +104,14 @@ function scheduleToDayBins(schedule: Reservation[]): DayBin[] {
 }
 
 interface WeekScheduleProps {
+  dateTimes: Date[];
   schedule: Reservation[];
+  variant: ScheduleVariant;
 }
 
 interface DayColProps {
   dayBin: DayBin;
 }
 
+export { ScheduleVariant };
 export default WeekSchedule;

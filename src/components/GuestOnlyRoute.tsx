@@ -1,9 +1,9 @@
 import { Navigate } from 'react-router';
-import { useAuth } from '../context/AppContext';
+import { useAppContext } from '../context/AppContext';
 import { JSX } from 'react';
 
 const GuestOnlyRoute = ({ children }: { children: JSX.Element }) => {
-  const { state } = useAuth();
+  const { state } = useAppContext();
   return !state.user ? children : <Navigate to='/profile' replace />;
 };
 

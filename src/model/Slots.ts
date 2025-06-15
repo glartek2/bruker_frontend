@@ -1,4 +1,5 @@
 interface Slot {
+  date: string;
   startTime: string;
   endTime: string;
 }
@@ -18,6 +19,7 @@ function toAcceptedSlot(
 ): AcceptedSlot {
   return {
     type: 'accepted',
+    date: slot.date,
     startTime: slot.startTime,
     endTime: slot.endTime,
     reservationId,
@@ -43,6 +45,7 @@ function toProposedSlot(
 ): ProposedSlot {
   return {
     type: 'proposed',
+    date: slot.date,
     startTime: slot.startTime,
     endTime: slot.endTime,
     reservationId,

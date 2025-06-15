@@ -3,7 +3,7 @@ import {
   AcceptedSlot,
   ProposedSlot,
   EmptySlot,
-} from '../../model/slots';
+} from '../../model/Slots';
 
 import EditIcon from '@mui/icons-material/Edit';
 import InfoIcon from '@mui/icons-material/Info';

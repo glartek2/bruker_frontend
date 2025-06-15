@@ -1,6 +1,6 @@
 import { NavLink } from 'react-router';
 import { useAppContext } from '../../context/AppContext';
-import { AcceptedSlot } from '../../model/slots';
+import { AcceptedSlot } from '../../model/Slots';
 import AcceptedView from '../view/AcceptedView';
 import CloseModal from './CloseModal';
 import { editAcceptedModalId } from './modals';

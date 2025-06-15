@@ -1,4 +1,4 @@
-import { AcceptedSlot } from '../../model/slots';
+import { AcceptedSlot } from '../../model/Slots';
 
 function AcceptedView({ acceptedSlot }: AcceptedViewProps) {
   return (

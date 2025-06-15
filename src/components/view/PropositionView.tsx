@@ -1,4 +1,4 @@
-import { AcceptedSlot, ProposedSlot } from '../../model/slots';
+import { AcceptedSlot, ProposedSlot } from '../../model/Slots';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 
 function PropositionView({ acceptedSlot, proposedSlot }: PropositionViewProps) {

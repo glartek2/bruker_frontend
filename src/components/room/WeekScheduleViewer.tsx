@@ -52,33 +52,29 @@ function WeekScheduleViewer({variant}: WeekScheduleViewerProps) {
         fetchSchedule();
     }, [dateTimes, state?.user?.token, meMode]);
 
-    return (
-        <div>
-            <EditAcceptedModal/>
-            <ReserveEmptyModal/>
-            <ViewAcceptedModal/>
-            <ViewProposedModal/>
-            <div className='flex flex-col items-center gap-4'>
-                <div className='join'>
-                    <button
-                        className='join-item btn'
-                        onClick={() => {
-                            setWeekId(weekId - 1);
-                        }}
-                    >
-                        « Poprzedni
-                    </button>
-                    <button className='join-item btn w-40'>{getDateFromWeekId()}</button>
-                    <button
-                        className='join-item btn'
-                        onClick={() => {
-                            setWeekId(weekId + 1);
-                        }}
-                    >
-                        Następny »
-                    </button>
-                </div>
-                <div className='flex items-center gap-2'>
+  return (
+    <div>
+      <div className='flex justify-center'>
+        <div className='join'>
+          <button
+            className='join-item btn'
+            onClick={() => {
+              setWeekId(weekId - 1);
+            }}
+          >
+            « Poprzedni
+          </button>
+          <button className='join-item btn w-40'>{getDateFromWeekId()}</button>
+          <button
+            className='join-item btn'
+            onClick={() => {
+              setWeekId(weekId + 1);
+            }}
+          >
+            Następny »
+          </button>
+        </div>
+          <div className='flex items-center gap-2'>
                     <input
                         type="checkbox"
                         id="meMode"
@@ -90,18 +86,18 @@ function WeekScheduleViewer({variant}: WeekScheduleViewerProps) {
                         Tylko moje zajęcia
                     </label>
                 </div>
-            </div>
-            <WeekSchedule
-                dateTimes={dateTimes}
-                schedule={schedule}
-                variant={variant}
-            />
-        </div>
-    );
+      </div>
+      <WeekSchedule
+        dateTimes={dateTimes}
+        schedule={schedule}
+        variant={variant}
+      />
+    </div>
+  );
 }
 
 interface WeekScheduleViewerProps {
-    variant: ScheduleVariant;
+  variant: ScheduleVariant;
 }
 
 export default WeekScheduleViewer;

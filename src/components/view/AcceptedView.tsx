@@ -1,4 +1,5 @@
 import { AcceptedSlot } from '../../model/Slots';
+import { dateFromDate, timeFromDate } from '../../model/time';
 
 function AcceptedView({ acceptedSlot }: AcceptedViewProps) {
   return (
@@ -8,8 +9,9 @@ function AcceptedView({ acceptedSlot }: AcceptedViewProps) {
       </p>
       <p className='text-left'>
         <span className='badge badge-soft'>
-          {acceptedSlot?.date} {acceptedSlot?.startTime} -{' '}
-          {acceptedSlot?.endTime}
+          {dateFromDate(acceptedSlot?.startTime)}{' '}
+          {timeFromDate(acceptedSlot?.startTime)} -{' '}
+          {timeFromDate(acceptedSlot?.endTime)}
         </span>
       </p>
       <p>

@@ -5,8 +5,6 @@ import {
   EmptySlot,
 } from '../../model/Slots';
 
-import EditIcon from '@mui/icons-material/Edit';
-import InfoIcon from '@mui/icons-material/Info';
 import { ScheduleVariant } from './WeekSchedule';
 import { useAppContext } from '../../context/AppContext';
 import { ActionType } from '../../context/reducer';
@@ -17,6 +15,11 @@ import {
   viewAcceptedModalId,
   viewProposedModalId,
 } from '../modal/modals';
+
+import EditIcon from '@mui/icons-material/Edit';
+import InfoIcon from '@mui/icons-material/Info';
+import EventAvailableIcon from '@mui/icons-material/EventAvailable';
+import { timeFromDate } from '../../model/time';
 
 function HourCard({ slot, variant }: HourCardProps) {
   const { dispatch } = useAppContext();
@@ -67,7 +70,7 @@ function HourCard({ slot, variant }: HourCardProps) {
         <div className='card-body p-2'>
           <div className='flex flex-row justify-between'>
             <div className='badge badge-soft badge-accent badge-sm'>
-              {slot.startTime}
+              {timeFromDate(slot.startTime)}
             </div>
             <h3 className='font-semibold px-2'>{slot.subject}</h3>
           </div>
@@ -97,7 +100,7 @@ function HourCard({ slot, variant }: HourCardProps) {
           <div className='card-body p-2'>
             <div className='flex flex-row justify-between'>
               <div className='badge badge-soft badge-warning badge-sm'>
-                {slot.startTime}
+                {timeFromDate(slot.startTime)}
               </div>
               <h3 className='font-semibold px-2'>{slot.subject}</h3>
             </div>
@@ -137,7 +140,7 @@ function HourCard({ slot, variant }: HourCardProps) {
         <div className='card-body p-2'>
           <div className='flex flex-row justify-between'>
             <div className='badge badge-soft badge-accent badge-sm'>
-              {slot.startTime}
+              {timeFromDate(slot.startTime)}
             </div>
             <h3 className='font-semibold px-2'>{slot.subject}</h3>
           </div>
@@ -167,7 +170,7 @@ function HourCard({ slot, variant }: HourCardProps) {
           <div className='card-body p-2'>
             <div className='flex flex-row justify-between'>
               <div className='badge badge-soft badge-warning badge-sm'>
-                {slot.startTime}
+                {timeFromDate(slot.startTime)}
               </div>
               <h3 className='font-semibold px-2'>{slot.subject}</h3>
             </div>
@@ -202,7 +205,7 @@ function HourCard({ slot, variant }: HourCardProps) {
       <div className='card border border-base-content/8 shadow-md bg-base-300 w-32 h-28'>
         <div className='card-body p-2'>
           <div className='badge badge-soft badge-ghost badge-sm'>
-            {slot.startTime}
+            {timeFromDate(slot.startTime)}
           </div>
           <div className='mt-auto flex flex-row justify-between items-center'>
             <p>wolne</p>
@@ -211,7 +214,7 @@ function HourCard({ slot, variant }: HourCardProps) {
                 className='btn btn-square btn-sm btn-outline'
                 onClick={reserveEmpty(slot)}
               >
-                <InfoIcon />
+                <EventAvailableIcon />
               </button>
             </div>
           </div>

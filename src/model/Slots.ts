@@ -9,13 +9,15 @@ interface AcceptedSlot extends Slot {
   reservationId: number;
   subject: string;
   where: string;
+  hasProposition: boolean;
 }
 
 function toAcceptedSlot(
   slot: AnySlot,
   reservationId: number,
   where: string,
-  subject: string
+  subject: string,
+  hasProposition: boolean
 ): AcceptedSlot {
   return {
     type: 'accepted',
@@ -25,6 +27,7 @@ function toAcceptedSlot(
     reservationId,
     where,
     subject,
+    hasProposition,
   };
 }
 
@@ -33,6 +36,7 @@ interface ProposedSlot extends Slot {
   reservationId: number;
   where: string;
   subject: string;
+  accepted: AcceptedSlot;
   byUser: string;
 }
 
@@ -41,6 +45,7 @@ function toProposedSlot(
   reservationId: number,
   where: string,
   subject: string,
+  accepted: AcceptedSlot,
   byUser: string
 ): ProposedSlot {
   return {
@@ -51,6 +56,7 @@ function toProposedSlot(
     reservationId,
     where,
     subject,
+    accepted,
     byUser,
   };
 }

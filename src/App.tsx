@@ -55,10 +55,16 @@ function App() {
             <Route path=':roomId' element={<ViewRoom />} />
             <Route path=':roomId/:weekId' element={<ViewRoom />} />
           </Route>
-          <Route
-            path='/move_reservation/:reservationId'
-            element={<MoveReservation />}
-          />
+          <Route path='/reservation'>
+            <Route
+              path='new_room/:reservationId'
+              element={<MoveReservation />}
+            />
+            <Route
+              path='new_time/:reservationId'
+              element={<MoveReservation />}
+            />
+          </Route>
           <Route path='/activate/:uidb64/:token' element={<Activate />} />
           <Route path='*' element={<NotFound />} />
         </Routes>

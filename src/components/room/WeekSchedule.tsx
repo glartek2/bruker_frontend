@@ -9,7 +9,7 @@ import {
 import { components } from '../../api/schema';
 import { toAcceptedSlot, toProposedSlot } from '../../model/slots';
 import { useMemo } from 'react';
-import { reservationLocation } from '../../model/reservation';
+import { roomLocation } from '../../model/reservation';
 
 type Reservation = components['schemas']['Reservation'];
 
@@ -62,42 +62,45 @@ function scheduleToDayBins(
   schedule: Reservation[]
 ): DayBin[] {
   const bins = dateTimes.map(defaultBin);
+  console.log(bins);
   for (const reservation of schedule) {
     const acceptedDateTime = new Date(reservation.date_time);
     const acceptedDay = dayFromDate(acceptedDateTime);
     const acceptedTime = timeFromDate(acceptedDateTime);
     console.log(acceptedTime);
 
+    const hasProposition =
+      reservation.proposed_date_time !== undefined &&
+      reservation.proposed_date_time !== null;
     const acceptedBin = bins[acceptedDay];
     try {
-      acceptedBin.slots[acceptedTime] = toAcceptedSlot(
+      const acceptedSlot = toAcceptedSlot(
         acceptedBin.slots[acceptedTime],
         reservation.id,
-        reservationLocation(reservation),
-        reservation.reservation_info.description
+        roomLocation(reservation.room),
+        reservation.reservation_info.description,
+        hasProposition
       );
-    } catch {
-      console.warn('bad accepted start time', acceptedTime);
-    }
+      acceptedBin.slots[acceptedTime] = acceptedSlot;
+      console.log(reservation.proposed_date_time);
+      if (reservation.proposed_date_time) {
+        const proposedDateTime = new Date(reservation.proposed_date_time);
+        const proposedDay = dayFromDate(proposedDateTime);
+        const proposedTime = timeFromDate(proposedDateTime);
 
-    console.log(reservation.proposed_date_time);
-    if (reservation.proposed_date_time) {
-      const proposedDateTime = new Date(reservation.proposed_date_time);
-      const proposedDay = dayFromDate(proposedDateTime);
-      const proposedTime = timeFromDate(proposedDateTime);
-
-      const proposedBin = bins[proposedDay];
-      try {
+        const proposedBin = bins[proposedDay];
+        const byUser = reservation.reservation_info.group.name;
         proposedBin.slots[proposedTime] = toProposedSlot(
           proposedBin.slots[proposedTime],
           reservation.id,
-          reservationLocation(reservation),
+          roomLocation(reservation.proposed_room),
           reservation.reservation_info.description,
-          'unknown'
+          acceptedSlot,
+          byUser
         );
-      } catch {
-        console.warn('bad proposed start time', proposedTime);
       }
+    } catch {
+      console.warn('bad start time', acceptedTime);
     }
   }
   return bins;

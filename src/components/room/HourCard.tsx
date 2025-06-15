@@ -13,6 +13,7 @@ import { ActionType } from '../../context/reducer';
 import {
   editAcceptedModalId,
   reserveEmptyModalId,
+  showModal,
   viewAcceptedModalId,
   viewProposedModalId,
 } from '../modal/modals';
@@ -24,12 +25,9 @@ function HourCard({ slot, variant }: HourCardProps) {
     return () => {
       dispatch({
         type: ActionType.SET_SLOT,
-        payload: { id: viewProposedModalId, value: slot },
+        payload: { id: editAcceptedModalId, value: slot },
       });
-      const dialog = document.getElementById(
-        editAcceptedModalId
-      ) as HTMLDialogElement;
-      dialog?.showModal();
+      showModal(editAcceptedModalId);
     };
   }
 
@@ -39,10 +37,7 @@ function HourCard({ slot, variant }: HourCardProps) {
         type: ActionType.SET_SLOT,
         payload: { id: viewAcceptedModalId, value: slot },
       });
-      const dialog = document.getElementById(
-        viewAcceptedModalId
-      ) as HTMLDialogElement;
-      dialog?.showModal();
+      showModal(viewAcceptedModalId);
     };
   }
 
@@ -52,10 +47,7 @@ function HourCard({ slot, variant }: HourCardProps) {
         type: ActionType.SET_SLOT,
         payload: { id: viewProposedModalId, value: slot },
       });
-      const dialog = document.getElementById(
-        viewProposedModalId
-      ) as HTMLDialogElement;
-      dialog?.showModal();
+      showModal(viewProposedModalId);
     };
   }
 
@@ -65,10 +57,7 @@ function HourCard({ slot, variant }: HourCardProps) {
         type: ActionType.SET_SLOT,
         payload: { id: reserveEmptyModalId, value: slot },
       });
-      const dialog = document.getElementById(
-        reserveEmptyModalId
-      ) as HTMLDialogElement;
-      dialog?.showModal();
+      showModal(reserveEmptyModalId);
     };
   }
 

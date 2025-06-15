@@ -29,14 +29,12 @@ function Dock() {
 
   return (
     <div className='dock visible sm:invisible'>
-      <DockButton title='Profil' to='/'>
-        <HomeFilledIcon />
-      </DockButton>
-
       <DockButton title='Rezerwuj' to='/room'>
         <CalendarMonthIcon />
       </DockButton>
-
+      <DockButton title='Profil' to='/profile'>
+        <HomeFilledIcon />
+      </DockButton>
       <DockButton title='Szukaj' to='/search'>
         <SearchIcon />
       </DockButton>

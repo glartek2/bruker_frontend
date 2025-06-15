@@ -1,10 +1,9 @@
 import { components } from '../api/schema';
 
-type Reservation = components['schemas']['Reservation'];
+type Room = components['schemas']['Room'];
 
-function reservationLocation(reservation: Reservation): string {
-  const room = reservation.room;
+function roomLocation(room: Room): string {
   return room.room_number + ' / ' + room.building.name;
 }
 
-export { reservationLocation };
+export { roomLocation };

@@ -388,6 +388,8 @@ export interface components {
             readonly id?: number;
             readonly room?: components["schemas"]["Room"];
             room_id?: number;
+            readonly proposed_room?: components["schemas"]["Room"];
+            proposed_room_id?: number;
             readonly reservation_info?: components["schemas"]["ReservationInfo"];
             reservation_info_id?: number;
             reservation_info_data?: components["schemas"]["ReservationInfo"];
@@ -427,6 +429,8 @@ export interface components {
             readonly id: number;
             readonly room: components["schemas"]["Room"];
             room_id: number;
+            readonly proposed_room: components["schemas"]["Room"];
+            proposed_room_id?: number;
             readonly reservation_info: components["schemas"]["ReservationInfo"];
             reservation_info_id?: number;
             reservation_info_data?: components["schemas"]["ReservationInfo"];

@@ -31,12 +31,29 @@ function dayName(day: Day): string {
 }
 
 function dayFromDate(date: Date): Day {
-  return date.getDay() - 1;
+  switch (date.getDay()) {
+    case 1:
+      return Day.MONDAY;
+    case 2:
+      return Day.TUESDAY;
+    case 3:
+      return Day.WEDNESDAY;
+    case 4:
+      return Day.THURSDAY;
+    case 5:
+      return Day.FRIDAY;
+    case 6:
+      return Day.SATURDAY;
+    case 0:
+      return Day.SUNDAY;
+    default:
+      return Day.MONDAY;
+  }
 }
 
 function dateFromDate(date: Date): string {
   const d = date.getDate();
-  const m = date.getMonth() - 1;
+  const m = date.getMonth();
   return d + ' ' + monthNames[m];
 }
 

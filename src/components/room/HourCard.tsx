@@ -19,7 +19,7 @@ import {
 import EditIcon from '@mui/icons-material/Edit';
 import InfoIcon from '@mui/icons-material/Info';
 import EventAvailableIcon from '@mui/icons-material/EventAvailable';
-import { timeFromDate } from '../../model/time';
+import { timeFromDate } from '../../model/Time';
 
 function HourCard({ slot, variant }: HourCardProps) {
   const { dispatch } = useAppContext();

@@ -1,6 +1,6 @@
 import { AcceptedSlot, ProposedSlot } from '../../model/Slots';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
-import { dateFromDate, timeFromDate } from '../../model/time';
+import { dateFromDate, timeFromDate } from '../../model/Time';
 
 function PropositionView({ acceptedSlot, proposedSlot }: PropositionViewProps) {
   return (

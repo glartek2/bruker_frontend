@@ -27,7 +27,7 @@ function MoveReservation() {
       if (!error) setSchedule(data);
     }
     fetchSchedule();
-  }, [reservationId]);
+  }, [reservationId, state?.user?.token]);
 
   useEffect(() => {
     async function fetchRoom() {

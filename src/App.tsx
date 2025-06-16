@@ -18,6 +18,7 @@ import PrivateRoute from './components/PrivateRoute.tsx';
 import Register from './routes/Register.tsx';
 import MoveReservation from './routes/MoveReservation.tsx';
 import Activate from './routes/Activate.tsx';
+import ReservationConfirmation from './routes/ReservationConfirmation.tsx';
 
 function App() {
   return (
@@ -66,6 +67,10 @@ function App() {
             />
           </Route>
           <Route path='/activate/:uidb64/:token' element={<Activate />} />
+          <Route
+            path='/reservation_update_confirmation/:uidb64/:token/:reservationId'
+            element={<ReservationConfirmation />}
+          />
           <Route path='*' element={<NotFound />} />
         </Routes>
       </AnimatePresence>

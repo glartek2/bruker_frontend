@@ -159,13 +159,14 @@ export interface paths {
         /** @description Update reservation. Staff can update immediately.Class representatives trigger email confirmation. */
         put: operations["api_reservation_update"];
         post?: never;
+        /** @description Delete reservation. Only staff, superusers, and instructors of the group can delete. */
         delete: operations["api_reservation_destroy"];
         options?: never;
         head?: never;
         patch: operations["api_reservation_partial_update"];
         trace?: never;
     };
-    "/api/reservation_update_confirmation/{uidb64}/{token}/": {
+    "/api/reservation/bulk_create/": {
         parameters: {
             query?: never;
             header?: never;
@@ -174,7 +175,23 @@ export interface paths {
         };
         get?: never;
         put?: never;
-        post: operations["api_reservation_update_confirmation_create"];
+        post: operations["api_reservation_bulk_create_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/reservation_update_confirmation/{uidb64}/{token}/{reservation_id}/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["api_reservation_update_confirmation_retrieve"];
+        put?: never;
+        post?: never;
         delete?: never;
         options?: never;
         head?: never;
@@ -468,6 +485,10 @@ export interface components {
         };
         TokenResponse: {
             token: string;
+            /** Format: email */
+            email: string;
+            is_staff: boolean;
+            is_superuser: boolean;
         };
     };
     responses: never;
@@ -1197,8 +1218,15 @@ export interface operations {
         };
         requestBody?: never;
         responses: {
-            /** @description No response body */
+            /** @description Reservation deleted successfully. */
             204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description You do not have permission to delete this reservation. */
+            403: {
                 headers: {
                     [name: string]: unknown;
                 };
@@ -1234,11 +1262,37 @@ export interface operations {
             };
         };
     };
-    api_reservation_update_confirmation_create: {
+    api_reservation_bulk_create_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["Reservation"];
+                "application/x-www-form-urlencoded": components["schemas"]["Reservation"];
+                "multipart/form-data": components["schemas"]["Reservation"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Reservation"];
+                };
+            };
+        };
+    };
+    api_reservation_update_confirmation_retrieve: {
         parameters: {
             query?: never;
             header?: never;
             path: {
+                reservation_id: string;
                 token: string;
                 uidb64: string;
             };

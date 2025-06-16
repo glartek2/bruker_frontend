@@ -1,5 +1,5 @@
 import { useAppContext } from '../../context/AppContext';
-import { AcceptedSlot } from '../../model/Slots';
+import { AcceptedSlot } from '../../model/slots';
 import AcceptedView from '../view/AcceptedView';
 import CloseModal from './CloseModal';
 import { viewAcceptedModalId } from './modals';

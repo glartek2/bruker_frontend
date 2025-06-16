@@ -1,5 +1,5 @@
 import { useAppContext } from '../../context/AppContext';
-import { ProposedSlot } from '../../model/Slots';
+import { ProposedSlot } from '../../model/slots';
 import PropositionView from '../view/PropositionView';
 import CloseModal from './CloseModal';
 import { viewProposedModalId } from './modals';

@@ -18,7 +18,6 @@ import PrivateRoute from './components/PrivateRoute.tsx';
 import Register from './routes/Register.tsx';
 import MoveReservation from './routes/MoveReservation.tsx';
 import Activate from './routes/Activate.tsx';
-import InfoModal from "./components/modal/InfoModal.tsx";
 
 function App() {
   return (
@@ -59,7 +58,11 @@ function App() {
           <Route path='/reservation'>
             <Route
               path=':action/:reservationId'
-              element={<MoveReservation />}
+              element={
+                <PrivateRoute>
+                  <MoveReservation />
+                </PrivateRoute>
+              }
             />
           </Route>
           <Route path='/activate/:uidb64/:token' element={<Activate />} />

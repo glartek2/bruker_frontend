@@ -3,23 +3,23 @@ import { useAppContext } from '../../context/AppContext';
 import { AcceptedSlot } from '../../model/slots';
 import AcceptedView from '../view/AcceptedView';
 import CloseModal from './CloseModal';
-import { editAcceptedModalId, infoModalId, showModal } from './modals';
-import { useState } from 'react';
 
 import EditLocationIcon from '@mui/icons-material/EditLocation';
 import EditCalendarIcon from '@mui/icons-material/EditCalendar';
 import EventBusyIcon from '@mui/icons-material/EventBusy';
 import createClient from 'openapi-fetch';
 import { paths } from '../../api/schema';
-import InfoModal from './InfoModal.tsx';
+import { editAcceptedModalId, useInfo } from './modals';
+import { useId } from 'react';
+import InfoModal from './InfoModal';
 
 const client = createClient<paths>({ baseUrl: import.meta.env.VITE_API_URL });
 
 function EditAcceptedModal() {
   const { state } = useAppContext();
   const acceptedSlot = state.slots[editAcceptedModalId] as AcceptedSlot;
-  const [infoModalText, setInfoModalText] = useState('');
-  const [infoModalSuccess, setInfoModalSuccess] = useState(false);
+  const infoModalId = useId();
+  const [info, emitInfo] = useInfo(infoModalId);
 
   const handleCancelReservation = async () => {
     if (!acceptedSlot?.reservationId || !state?.user?.token) return;
@@ -36,9 +36,6 @@ function EditAcceptedModal() {
     });
 
     if (!error) {
-      setInfoModalText('Rezerwacja została pomyślnie odwołana.');
-      setInfoModalSuccess(true);
-
       document
         .getElementById(`reservationCard` + acceptedSlot.reservationId)
         ?.classList.add('bg-rose-900');
@@ -47,19 +44,23 @@ function EditAcceptedModal() {
           `reservationCard` + acceptedSlot.reservationId + `Badge`
         )
         ?.classList.add('badge-error');
-
-      showModal(infoModalId);
+      emitInfo({
+        type: 'success',
+        header: 'Rezerwacja została odwołana',
+        message: '',
+      });
     } else {
-      setInfoModalText('Nie masz uprawnień do odwołania rezerwacji.');
-      setInfoModalSuccess(false);
-
-      showModal(infoModalId);
+      emitInfo({
+        type: 'error',
+        header: 'Brak uprawnień',
+        message: 'Nie masz uprawnień do odwołania rezerwacji',
+      });
     }
   };
 
   return (
     <>
-      <InfoModal text={infoModalText} isSuccess={infoModalSuccess} />
+      <InfoModal id={infoModalId} info={info} />
       <dialog id={editAcceptedModalId} className='modal'>
         <div className='modal-box space-y-4'>
           <div className='flex items-center space-x-4'>

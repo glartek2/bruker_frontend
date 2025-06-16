@@ -14,12 +14,12 @@ import { useAppContext } from '../context/AppContext';
 const client = createClient<paths>({ baseUrl: import.meta.env.VITE_API_URL });
 
 function MoveReservation() {
-  const { action, reservationId } = useParams();
+  const { reservationId } = useParams();
 
   const { state } = useAppContext();
 
   const reservationIdInt = parseInt(reservationId ?? '');
-  const [detailsQuery, setDetailsQuery] = useState<EquipmentDetails>({});
+  const [queryDetails, setQueryDetails] = useState<EquipmentDetails>({});
 
   useEffect(() => {
     async function fetchRoomDetails() {
@@ -32,7 +32,7 @@ function MoveReservation() {
       if (!error) {
         const details = (data.room.equipment.details ?? {}) as EquipmentDetails;
         console.log(details);
-        setDetailsQuery(roomEquipmentQuery(details, data.room.capacity));
+        setQueryDetails(roomEquipmentQuery(details, data.room.capacity));
       }
     }
     fetchRoomDetails();
@@ -41,7 +41,7 @@ function MoveReservation() {
   return (
     <RouteContainer>
       {/* <EditAcceptedModal /> */}
-      <ReserveEmptyModal detailsQuery={detailsQuery} />
+      <ReserveEmptyModal detailsQuery={queryDetails} />
       <ViewAcceptedModal />
       <ViewProposedModal />
       <div className='hero bg-base-200 min-h-screen'>

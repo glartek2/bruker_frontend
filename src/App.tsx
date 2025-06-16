@@ -18,6 +18,7 @@ import PrivateRoute from './components/PrivateRoute.tsx';
 import Register from './routes/Register.tsx';
 import MoveReservation from './routes/MoveReservation.tsx';
 import Activate from './routes/Activate.tsx';
+import InfoModal from "./components/modal/InfoModal.tsx";
 
 function App() {
   return (

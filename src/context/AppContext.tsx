@@ -4,7 +4,12 @@ import { Action } from './reducer';
 
 export interface AppContextType {
   state: {
-    user: { token: string } | null;
+    user: {
+        token: string;
+        email: string;
+        is_staff: boolean;
+        is_superuser: boolean;
+    } | null;
     slots: { [id: string]: AnySlot };
   };
   dispatch: React.ActionDispatch<[action: Action]>;

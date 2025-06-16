@@ -3,7 +3,7 @@ import { useAppContext } from '../../context/AppContext';
 import { EmptySlot } from '../../model/slots';
 import CloseModal from './CloseModal';
 import { reserveEmptyModalId, useInfo } from './modals';
-import { EquipmentDetails } from '../../model/reservation';
+import { EquipmentDetails, roomEquipmentQuery } from '../../model/reservation';
 import createClient from 'openapi-fetch';
 import { components, paths } from '../../api/schema';
 import RoomCard from '../room/RoomCard';
@@ -12,11 +12,15 @@ import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import EmptyView from '../view/EmptyView';
 import InfoModal from './InfoModal';
 
+type Reservation = components['schemas']['Reservation'];
 type Room = components['schemas']['Room'];
 
 const client = createClient<paths>({ baseUrl: import.meta.env.VITE_API_URL });
 
-function ReserveEmptyModal({ detailsQuery }: ReserveEmptyModalProps) {
+function ReserveEmptyModal({
+  reservation,
+  notifyChange,
+}: ReserveEmptyModalProps) {
   const { state } = useAppContext();
   const emptySlot = state.slots[reserveEmptyModalId] as EmptySlot;
   const [rooms, setRooms] = useState<Room[]>([]);
@@ -25,29 +29,63 @@ function ReserveEmptyModal({ detailsQuery }: ReserveEmptyModalProps) {
 
   useEffect(() => {
     async function fetchAvailableRooms() {
-      const { data, error } = await client.GET('/api/rooms/available/', {
-        params: {
-          query: {
-            start: emptySlot.startTime.toISOString(),
-            end: emptySlot.endTime.toISOString(),
-            ...detailsQuery,
+      if (emptySlot) {
+        const room = reservation?.room;
+        const details = (room?.equipment?.details ?? {}) as EquipmentDetails;
+        const query = roomEquipmentQuery(details, room?.capacity);
+        const { data, error } = await client.GET('/api/rooms/available/', {
+          params: {
+            query: {
+              start: emptySlot.startTime.toISOString(),
+              end: emptySlot.endTime.toISOString(),
+              ...query,
+            },
           },
-        },
-      });
-      if (!error) {
-        setRooms(data);
+        });
+        if (!error) {
+          setRooms(data);
+        }
       }
     }
     fetchAvailableRooms();
-  }, [emptySlot, detailsQuery]);
+  }, [emptySlot, reservation]);
 
   function roomActionProducer(roomId: number) {
-    function roomReserve() {
-      emitInfo({
-        type: 'success',
-        header: 'Zarezerowano salę',
-        message: 'roomID: ' + roomId,
+    async function roomReserve() {
+      const { error } = await client.PUT('/api/reservation/{id}/', {
+        params: {
+          path: { id: reservation?.id },
+        },
+        headers: {
+          Authorization: 'Token ' + state?.user?.token,
+        },
+        body: {
+          room_id: reservation?.room.id,
+          proposed_room_id: roomId,
+          reservation_info_id: reservation?.reservation_info.id,
+          // reservation_info_data: {
+          //   user_id: reservation?.reservation_info.user.id ?? 0,
+          //   group_id: reservation?.reservation_info.group.id ?? 0,
+          //   description: reservation?.reservation_info.description ?? '',
+          // },
+          date_time: reservation?.date_time,
+          proposed_date_time: emptySlot?.startTime.toISOString(),
+        },
       });
+      if (!error) {
+        emitInfo({
+          type: 'success',
+          header: 'Zarezerowano salę',
+          message: '',
+        });
+        notifyChange();
+      } else {
+        emitInfo({
+          type: 'error',
+          header: 'Nie można zarezerować sali',
+          message: '',
+        });
+      }
     }
 
     return (
@@ -83,7 +121,8 @@ function ReserveEmptyModal({ detailsQuery }: ReserveEmptyModalProps) {
 }
 
 interface ReserveEmptyModalProps {
-  detailsQuery: EquipmentDetails;
+  reservation: Reservation;
+  notifyChange: () => unknown;
 }
 
 export default ReserveEmptyModal;

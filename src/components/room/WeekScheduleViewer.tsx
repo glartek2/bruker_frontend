@@ -4,12 +4,13 @@ import { components, paths } from '../../api/schema';
 import createClient from 'openapi-fetch';
 import { useAppContext } from '../../context/AppContext';
 import { dateFromDate, dateTimesOfWeek } from '../../model/time';
+import { Trigger } from '../../hooks/trigger';
 
 type Reservation = components['schemas']['Reservation'];
 
 const client = createClient<paths>({ baseUrl: import.meta.env.VITE_API_URL });
 
-function WeekScheduleViewer({ variant }: WeekScheduleViewerProps) {
+function WeekScheduleViewer({ variant, trigger }: WeekScheduleViewerProps) {
   const { state } = useAppContext();
 
   const [weekId, setWeekId] = useState<number>(24);
@@ -46,7 +47,7 @@ function WeekScheduleViewer({ variant }: WeekScheduleViewerProps) {
     }
 
     fetchSchedule();
-  }, [dateTimes, state?.user?.token, meMode]);
+  }, [dateTimes, meMode, trigger, state?.user?.token]);
 
   return (
     <div>
@@ -94,6 +95,7 @@ function WeekScheduleViewer({ variant }: WeekScheduleViewerProps) {
 
 interface WeekScheduleViewerProps {
   variant: ScheduleVariant;
+  trigger?: Trigger;
 }
 
 export default WeekScheduleViewer;

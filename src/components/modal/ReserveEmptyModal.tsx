@@ -1,6 +1,6 @@
 import { useEffect, useId, useState } from 'react';
 import { useAppContext } from '../../context/AppContext';
-import { EmptySlot } from '../../model/slots';
+import { EmptySlot } from '../../model/Slots';
 import CloseModal from './CloseModal';
 import { reserveEmptyModalId, useInfo } from './modals';
 import { EquipmentDetails, roomEquipmentQuery } from '../../model/reservation';

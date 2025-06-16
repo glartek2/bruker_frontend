@@ -1,4 +1,4 @@
-import { DayBin } from '../model/slots';
+import { DayBin } from '../model/Slots';
 import WeekSchedule from '../components/room/WeekSchedule';
 import RouteContainer from '../components/RouteContainer';
 import { NavLink, useParams } from 'react-router';

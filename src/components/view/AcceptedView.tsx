@@ -1,5 +1,5 @@
-import { AcceptedSlot } from '../../model/slots';
-import { dateFromDate, timeFromDate } from '../../model/time';
+import { AcceptedSlot } from '../../model/Slots';
+import { dateFromDate, timeFromDate } from '../../model/Time';
 
 function AcceptedView({ acceptedSlot }: AcceptedViewProps) {
   return (

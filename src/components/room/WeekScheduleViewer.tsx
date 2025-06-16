@@ -3,7 +3,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { components, paths } from '../../api/schema';
 import createClient from 'openapi-fetch';
 import { useAppContext } from '../../context/AppContext';
-import { dateFromDate, dateTimesOfWeek } from '../../model/time';
+import { dateFromDate, dateTimesOfWeek } from '../../model/Time';
 import { Trigger } from '../../hooks/trigger';
 
 type Reservation = components['schemas']['Reservation'];

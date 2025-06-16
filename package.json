@@ -23,6 +23,7 @@
     "motion": "^12.9.4",
     "openapi-fetch": "^0.13.5",
     "react": "^19.0.0",
+    "react-cookie": "^8.0.1",
     "react-dom": "^19.0.0",
     "react-router": "^7.5.3",
     "tailwindcss": "^4.1.0",

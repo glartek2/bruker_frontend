@@ -1,13 +1,8 @@
-import {AnySlot} from '../model/slots';
+import {AnySlot} from '../model/Slots';
 
 export interface AppState {
-    user: {
-        token: string;
-        email: string;
-        is_staff: boolean;
-        is_superuser: boolean;
-    } | null;
-    slots: { [id: string]: AnySlot };
+  user: { token: string } | null;
+  slots: Record<string, AnySlot>;
 }
 
 export enum ActionType {

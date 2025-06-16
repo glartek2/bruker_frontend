@@ -5,9 +5,9 @@ import {
   dayName,
   defaultBin,
   timeFromDate,
-} from '../../model/time';
+} from '../../model/Time';
 import { components } from '../../api/schema';
-import { toAcceptedSlot, toProposedSlot } from '../../model/slots';
+import { toAcceptedSlot, toProposedSlot } from '../../model/Slots';
 import { useMemo } from 'react';
 import { roomLocation } from '../../model/reservation';
 

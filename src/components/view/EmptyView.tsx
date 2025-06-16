@@ -1,5 +1,5 @@
-import { EmptySlot } from '../../model/slots';
-import { dateFromDate, timeFromDate } from '../../model/time';
+import { EmptySlot } from '../../model/Slots';
+import { dateFromDate, timeFromDate } from '../../model/Time';
 
 function EmptyView({ emptySlot }: EmptyViewProps) {
   return (

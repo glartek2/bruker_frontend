@@ -1,15 +1,10 @@
 import React, { useContext } from 'react';
-import { AnySlot } from '../model/slots';
+import { AnySlot } from '../model/Slots';
 import { Action } from './reducer';
 
 export interface AppContextType {
   state: {
-    user: {
-        token: string;
-        email: string;
-        is_staff: boolean;
-        is_superuser: boolean;
-    } | null;
+    user: { token: string } | null;
     slots: { [id: string]: AnySlot };
   };
   dispatch: React.ActionDispatch<[action: Action]>;

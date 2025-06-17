@@ -9,11 +9,8 @@ function NavBar() {
       <div className='navbar-start space-x-2'>
         <LogoXL />
         <div tabIndex={0} className='max-md:hidden space-x-2'>
-          <NavLink className='btn btn-ghost' to='/'>
-            Home
-          </NavLink>
-          <NavLink className='btn btn-ghost' to='/room'>
-            Room
+          <NavLink className='btn btn-ghost' to='/search'>
+            Szukaj
           </NavLink>
         </div>
       </div>

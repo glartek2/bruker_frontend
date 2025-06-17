@@ -43,7 +43,6 @@ function MoveReservation() {
 
   return (
     <RouteContainer>
-      {/* <EditAcceptedModal /> */}
       <ReserveEmptyModal reservation={reservation!} notifyChange={invalidate} />
       <ViewAcceptedModal />
       <ViewProposedModal />

@@ -16,6 +16,7 @@ type Reservation = components['schemas']['Reservation'];
 enum ScheduleVariant {
   VIEW, // for schedule viewer
   MOVE, // for move reservation
+  NEW,
 }
 
 function WeekSchedule({ dateTimes, schedule, variant }: WeekScheduleProps) {

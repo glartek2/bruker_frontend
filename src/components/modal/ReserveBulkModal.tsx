@@ -208,7 +208,6 @@ function ReserveBulkModal({roomId}: ReserveBulkModalProps) {
                                     value={description}
                                     onChange={(e) => setDescription(e.target.value)}
                                     rows={3}
-                                    placeholder='Np. Zajęcia z matematyki dla klasy 3A'
                                 />
                             </div>
 
@@ -221,7 +220,6 @@ function ReserveBulkModal({roomId}: ReserveBulkModalProps) {
                                     className='input input-bordered w-full'
                                     value={contactEmail}
                                     onChange={(e) => setContactEmail(e.target.value)}
-                                    placeholder='kontakt@example.com'
                                 />
                             </div>
                         </div>

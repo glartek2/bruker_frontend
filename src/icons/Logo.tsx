@@ -24,4 +24,16 @@ function LogoMd() {
   );
 }
 
-export { LogoXL, LogoMd };
+function LogoNoMargin() {
+  return (
+    <NavLink
+      className="font-semibold text-xl no-underline hover:underline decoration-2 transition-colors duration-300 decoration-accent/20 hover:decoration-accent flex items-center"
+      to="/"
+    >
+      <img src="/logo.png" alt="Bruker logo" className="h-8 w-auto" />
+      Bruker
+    </NavLink>
+  );
+}
+
+export { LogoXL, LogoMd, LogoNoMargin };

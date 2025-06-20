@@ -87,7 +87,7 @@ function ReserveBulkModal({roomId}: ReserveBulkModalProps) {
 
             const currentDate = new Date(start);
             while (currentDate <= end) {
-                const offsetDate = new Date(currentDate.getTime() - (currentDate.getTimezoneOffset() * 60000));
+                const offsetDate = new Date(currentDate.getTime());
                 dates.push(offsetDate.toISOString());
                 currentDate.setDate(currentDate.getDate() + 7);
             }
